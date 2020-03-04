@@ -12,6 +12,7 @@ class Main extends Component {
         newRepo: '',
         repositories: [],
         loading: false,
+        error: null,
     };
 
     componentDidMount() {
@@ -39,23 +40,36 @@ class Main extends Component {
 
         this.setState({ loading: true });
 
-        const { newRepo, repositories } = this.state;
+        try {
+            const { newRepo, repositories } = this.state;
 
-        const response = await api.get(`/repos/${newRepo}`);
+            if(newRepo === '') throw 'Você precisar digitar um repositório';
 
-        const data = {
-            name: response.data.full_name,
+            const reporExists = repositories.find(
+                repository => repository.name === newRepo
+            );
+
+            if(reporExists) throw 'Repositório Duplicado';
+
+            const response = await api.get(`/repos/${newRepo}`);
+
+            const data = {
+                name: response.data.full_name,
+            };
+
+            this.setState({
+                repositories: [...repositories, data ],
+                newRepo: '',
+            });
+        } catch {
+            this.setState({ error: true });
+        } finally {
+            this.setState({ loading: false });
         };
-
-        this.setState({
-            repositories: [...repositories, data ],
-            newRepo: '',
-            loading: false,
-        });
-    }
+    };
 
     render() {
-        const { newRepo, repositories, loading } = this.state;
+        const { newRepo, repositories, loading, error } = this.state;
 
         return (
             <Container>
@@ -64,7 +78,7 @@ class Main extends Component {
                     Repositórios
                 </h1>
 
-                <Form onSubmit={ this.handleSubmit }>
+                <Form onSubmit={ this.handleSubmit } error={error}>
                     <input
                         type="text"
                         placeholder="Adicionar Repositório"
@@ -86,7 +100,9 @@ class Main extends Component {
                         repositories.map(repository => (
                             <li key={repository.name}>
                                 <span>{repository.name}</span>
-                                <Link to={`/repository/${ encodeURIComponent(repository.name) }`}>Detalhes</Link>
+                                <Link to={`/repository/${ encodeURIComponent(repository.name) }`}>
+                                    Detalhes
+                                </Link>
                             </li>
                         ))
                     }
