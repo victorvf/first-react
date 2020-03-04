@@ -12,35 +12,41 @@ export const Loading = styled.span`
 `;
 
 export const Owner = styled.header`
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-
     a {
-        color: 7159c1;
+        color: #7159c1;
+        background: #fff;
+        padding: 5px;
+        border: 1px solid #7159c1;
+        border-radius: 6px;
         font-size: 16px;
         text-decoration: none;
     }
 
-    img {
-        height: 120px;
-        width: 120px;
-        border-radius: 50%;
-        margin-top: 20px;
-    }
+    div{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
 
-    h1 {
-        font-size: 24px;
-        margin-top: 10px;
-    }
+        img {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
 
-    p {
-        margin-top: 5px;
-        font-size: 14px;
-        color: #666;
-        line-height: 1.4;
-        text-align: center;
-        max-width: 400px;
+        h1 {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+            text-align: center;
+            max-width: 400px;
+        }
     }
 `;
 

@@ -110,12 +110,14 @@ class Repository extends Component {
             <Container>
                 <Owner>
                     <Link to="/">Voltar</Link>
-                    <img
-                        src={ repository.owner.avatar_url }
-                        alt={ repository.owner.login }
-                    />
-                    <h1>{ repository.name }</h1>
-                    <p>{ repository.description }</p>
+                    <div class="infos">
+                        <img
+                            src={ repository.owner.avatar_url }
+                            alt={ repository.owner.login }
+                        />
+                        <h1>{ repository.name }</h1>
+                        <p>{ repository.description }</p>
+                    </div>
                 </Owner>
 
                 {issues.length !== 0 ? (
