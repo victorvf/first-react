@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Form, SubmitButton, List } from './styles';
+import { Form, SubmitButton, List, DeleteButton } from './styles';
 
 class Main extends Component {
     state = {
@@ -68,6 +68,12 @@ class Main extends Component {
         };
     };
 
+    handleDelete = repository => {
+        const { repositories } = this.state;
+
+        this.setState({ repositories: repositories.filter( r => r !== repository )});
+    };
+
     render() {
         const { newRepo, repositories, loading, error } = this.state;
 
@@ -100,9 +106,14 @@ class Main extends Component {
                         repositories.map(repository => (
                             <li key={repository.name}>
                                 <span>{repository.name}</span>
-                                <Link to={`/repository/${ encodeURIComponent(repository.name) }`}>
-                                    Detalhes
-                                </Link>
+                                <div>
+                                    <Link to={`/repository/${ encodeURIComponent(repository.name) }`}>
+                                        Detalhes
+                                    </Link>
+                                    <DeleteButton onClick={ () => this.handleDelete(repository) }>
+                                        Excluir
+                                    </DeleteButton>
+                                </div>
                             </li>
                         ))
                     }
