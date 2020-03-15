@@ -68,9 +68,17 @@ export const List = styled.ul`
             border-top: 1px solid #eee;
         }
 
-        a {
+        a:first-child {
             color: #7159c1;
             text-decoration: none;
         }
     }
+`;
+
+export const DeleteButton = styled.a`
+    color: #FF5656;
+    cursor: pointer;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 14px;
 `;
