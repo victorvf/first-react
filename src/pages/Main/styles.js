@@ -7,13 +7,12 @@ export const Form = styled.form`
 
     input {
         flex: 1;
-        border: 1px solid ${ props => (props.error ? 'red' : '#eee')};
+        border: 1px solid ${props => (props.error ? 'red' : '#eee')};
         padding: 10px 15px;
         border-radius: 4px;
         font-size: 16px;
     }
 `;
-
 
 const rotate = keyframes`
     from {
@@ -24,7 +23,7 @@ const rotate = keyframes`
     }
 `;
 
-export const SubmitButton = styled.button.attrs( props => ({
+export const SubmitButton = styled.button.attrs(props => ({
     type: 'submit',
     disabled: props.loading,
 }))`
@@ -43,14 +42,13 @@ export const SubmitButton = styled.button.attrs( props => ({
         opacity: 0.6;
     }
 
-    ${ props =>
+    ${props =>
         props.loading &&
         css`
             svg {
                 animation: ${rotate} 2s linear infinite;
             }
-        `
-    }
+        `}
 `;
 
 export const List = styled.ul`
@@ -76,7 +74,7 @@ export const List = styled.ul`
 `;
 
 export const DeleteButton = styled.a`
-    color: #FF5656;
+    color: #ff5656;
     cursor: pointer;
     margin-left: 10px;
     text-decoration: none;

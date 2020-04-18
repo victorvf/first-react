@@ -28,15 +28,15 @@ class Repository extends Component {
         issues: [],
         loading: true,
         filters: [
-            { state: 'all', label: 'Todas', active: true},
-            { state: 'open', label: 'Abertas', active: false},
-            { state: 'closed', label: 'Fechadas', active: false},
+            { state: 'all', label: 'Todas', active: true },
+            { state: 'open', label: 'Abertas', active: false },
+            { state: 'closed', label: 'Fechadas', active: false },
         ],
         filterIndex: 0,
         page: 1,
     };
 
-    async componentDidMount(){
+    async componentDidMount() {
         const { match } = this.props;
         const { filters } = this.state;
 
@@ -57,7 +57,7 @@ class Repository extends Component {
             issues: issues.data,
             loading: false,
         });
-    };
+    }
 
     loadIssues = async () => {
         const { match } = this.props;
@@ -92,17 +92,17 @@ class Repository extends Component {
         this.loadIssues();
     };
 
-    render(){
+    render() {
         const {
             repository,
             issues,
             loading,
             filters,
             filterIndex,
-            page
+            page,
         } = this.state;
 
-        if(loading){
+        if (loading) {
             return <Loading>Carregando</Loading>;
         }
 
@@ -110,48 +110,50 @@ class Repository extends Component {
             <Container>
                 <Owner>
                     <Link to="/">Voltar</Link>
-                    <div class="infos">
+                    <div className="infos">
                         <img
-                            src={ repository.owner.avatar_url }
-                            alt={ repository.owner.login }
+                            src={repository.owner.avatar_url}
+                            alt={repository.owner.login}
                         />
-                        <h1>{ repository.name }</h1>
-                        <p>{ repository.description }</p>
+                        <h1>{repository.name}</h1>
+                        <p>{repository.description}</p>
                     </div>
                 </Owner>
 
                 {issues.length !== 0 ? (
                     <>
                         <IssueList>
-                            <IssueFilter active={ filterIndex }>
+                            <IssueFilter active={filterIndex}>
                                 {filters.map((filter, index) => (
                                     <button
                                         type="button"
                                         key={filter.label}
-                                        onClick={() => this.handleFilterClick(index)}
+                                        onClick={() =>
+                                            this.handleFilterClick(index)
+                                        }
                                     >
                                         {filter.label}
                                     </button>
                                 ))}
                             </IssueFilter>
-                            {issues.map( issue => (
-                                <li key={ String( issue.id ) }>
+                            {issues.map(issue => (
+                                <li key={String(issue.id)}>
                                     <img
-                                        src={ issue.user.avatar_url }
-                                        alt={ issue.user.login }
+                                        src={issue.user.avatar_url}
+                                        alt={issue.user.login}
                                     />
                                     <div>
                                         <strong>
-                                            <a href={ issue.html_url }>
-                                                { issue.title }
+                                            <a href={issue.html_url}>
+                                                {issue.title}
                                             </a>
-                                            {issue.labels.map( label => (
+                                            {issue.labels.map(label => (
                                                 <span key={String(label.id)}>
                                                     {label.name}
                                                 </span>
                                             ))}
                                         </strong>
-                                        <p>{ issue.user.login }</p>
+                                        <p>{issue.user.login}</p>
                                     </div>
                                 </li>
                             ))}
@@ -159,17 +161,15 @@ class Repository extends Component {
                         <PageActions>
                             <button
                                 type="button"
-                                disabled={ page < 2 }
-                                onClick={ () => this.handlePage('back')}
+                                disabled={page < 2}
+                                onClick={() => this.handlePage('back')}
                             >
                                 Anterior
                             </button>
-                            <span>
-                                Página { page }
-                            </span>
+                            <span>Página {page}</span>
                             <button
                                 type="button"
-                                onClick={ () => this.handlePage('next') }
+                                onClick={() => this.handlePage('next')}
                             >
                                 Próximo
                             </button>
@@ -180,7 +180,7 @@ class Repository extends Component {
                 )}
             </Container>
         );
-    };
-};
+    }
+}
 
 export default Repository;

@@ -22,8 +22,8 @@ export const Owner = styled.header`
         text-decoration: none;
     }
 
-    div{
-        display:flex;
+    div {
+        display: flex;
         flex-direction: column;
         align-items: center;
 
@@ -76,43 +76,43 @@ export const IssueList = styled.ul`
         }
 
         div {
-           flex: 1;
-           margin-left: 15px;
+            flex: 1;
+            margin-left: 15px;
 
-           strong {
-               font-size: 16px;
+            strong {
+                font-size: 16px;
 
-               a {
-                   text-decoration: none;
-                   color: #333;
+                a {
+                    text-decoration: none;
+                    color: #333;
 
-                   &:hover {
-                       color: #7159c1;
-                   }
-               }
+                    &:hover {
+                        color: #7159c1;
+                    }
+                }
 
-               span {
-                   background: #808080;
-                   color: #fff;
-                   border-radius: 2px;
-                   font-size: 12px;
-                   font-weight: 600;
-                   height: 20px;
-                   padding: 3px 4px;
-                   margin-left: 10px;
+                span {
+                    background: #808080;
+                    color: #fff;
+                    border-radius: 2px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    height: 20px;
+                    padding: 3px 4px;
+                    margin-left: 10px;
 
-                   & + span {
+                    & + span {
                         background: #7159c1;
                         color: #fff;
-                   }
-               }
-           }
+                    }
+                }
+            }
 
-           p {
-               margin-top: 5px;
-               font-size: 12px;
-               color: #999;
-           }
+            p {
+                margin-top: 5px;
+                font-size: 12px;
+                color: #999;
+            }
         }
     }
 `;
@@ -129,7 +129,7 @@ export const IssueFilter = styled.div`
         border: 0;
         padding-bottom: 5px;
 
-        &:nth-child(${props => props.active + 1}){
+        &:nth-child(${props => props.active + 1}) {
             color: #7159c1;
             border-bottom: 1px solid #7159c1;
         }
@@ -154,7 +154,7 @@ export const PageActions = styled.div`
         transition: opacity 0.25s ease-out;
 
         &:disabled {
-            opacity: 0.50;
+            opacity: 0.5;
             cursor: not-allowed;
         }
     }
